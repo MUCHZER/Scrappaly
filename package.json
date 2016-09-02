@@ -1,0 +1,23 @@
+{
+  "name": "Scappaly",
+  "version": "0.0.1",
+  "description": "A scrapper for Papaly",
+  "main": "server.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "dependencies": {
+    "node-libcurl": "~1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "dependencies" : {
+    "node-libcurl" : "latest",
+    "express": "latest",
+    "cheerio": "latest"
+  }
+}
