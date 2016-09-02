@@ -1,17 +1,30 @@
-var parse5 = require('parse5'),
-	fs   = require( 'fs' );
+var xpath = require('xpath')
+  , dom = require('xmldom').DOMParser
+	fs   = require( 'fs' ),
+	himalaya = require('himalaya'),
+	replaceall = require("replaceall"),
+	ent = require('ent');
 
+fs.readFile('script/api.html', 'utf-8', function (err, html) {
+	//console.log(html);
+	var doc = new dom().parseFromString(html);
+	var str = xpath.select("//div[@board-id='0a3fd0629f3a4c169d7c8d98132c8fe0']", doc);
+	item = ent.decode(replaceall("/a>,<a h", "/a><a h", str.toString('utf8')));
 
-fs.readFile('./api.html', function (err, html) {
-	console.log(html);
-	//var document = parse5.parse(html.toString());
-	//console.log(document);
+	fs.writeFile('message.json', item, 'utf8', function() {
+		console.log('is oké');
+	});
 });
 
 
 /*
-var doc = new dom().parseFromString(html);
-var nodes = xpath.select("//title", doc);
- 
-console.log(nodes[0].localName + ": " + nodes[0].firstChild.data);
-console.log("node: " + nodes[0].toString());*/
+
+
+class="item-name"
+
+board-id="0a3fd0629f3a4c169d7c8d98132c8fe0"
+
+#<div class="item-name">[]
+
+
+*/
