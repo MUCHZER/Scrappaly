@@ -1,0 +1,1 @@
+// Resors de la bdd les card demandé depuis l'api
