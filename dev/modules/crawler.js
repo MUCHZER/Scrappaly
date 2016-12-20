@@ -1,6 +1,7 @@
 // crawler file
 
-// ------------- DECLARATIONS -------------
+// IMPORTS
+// ================================================================================================================
 
 var Xray = require('x-ray');
 var x = Xray();
@@ -18,7 +19,8 @@ const driver = makeDriver(options)      //Create driver
 
 x.driver(driver)                        //Set driver
 
-// ------------- MODULES -------------
+// ROUTINE
+// ================================================================================================================
 
 function card_crawler( cat_id ) {
 	x( 'https://papaly.com/', 'div.cards-container', [{
@@ -39,3 +41,9 @@ function cat_crawler() {
 			
 	}]);
 }
+
+
+// EXPORTS
+// ================================================================================================================
+
+module.exports = Crawler ;

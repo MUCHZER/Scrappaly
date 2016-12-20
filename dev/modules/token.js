@@ -1,39 +1,61 @@
+'use strict' ;
 /**
 *  User connexion, get token
 */
 
-// ------------- DECLARATIONS -------------
-
-var Promise = require("bluebird");
-// var Curl = Promise.promisify( require( 'node-libcurl' ).Curl );
-var rp = require('request-promise');
-
-var url = 'https://papaly.com/login.json';
+// IMPORTS
+// ================================================================================================================
 
 
-// ------------- MODULES -------------
+var rp = require( 'request' );
 
-function user_connect( mail, password ) {
+const url = 'https://papaly.com/login.json';
 
-    var options = {
-        method: 'POST',
-        uri: url,
-        formData: {
-            'authenticity_token': '',
-            'user[remember_me]': '1',
-            'user[email]': mail,
-            'user[password]': password
-        },
-        json: true
-    };
 
-    rp( options )
-        .then( function( parsedBody ) {
-            return parsedBody.id;
-        })
-        .catch( function( err ) {
-            // failed
-            console.log( err );
-        });
+// ROUTINE
+// ================================================================================================================
+
+var user_connect = function ( mail, password ) {
+
+    // var options = {
+    //     method: 'POST',
+    //     uri: url,
+    //     formData: {
+    //         'authenticity_token': '',
+    //         'user[remember_me]': '1',
+    //         'user[email]': mail,
+    //         'user[password]': password
+    //     },
+    //     json: true
+    // };
+
+    // return rp( options )
+    //     .then( function( parsedBody ) {
+    //         console.log(parsedBody);
+    //         return parsedBody.id;
+    //     })
+    //     .catch( function( err ) {
+    //         // failed
+    //         console.log( err );
+    //     });
+
+    rp
+        .post({ url: url,
+                form: {
+                    'authenticity_token': '',
+                    'user[remember_me]': '1',
+                    'user[email]': mail,
+                    'user[password]': password
+                        }
+                    }, 
+                function(err, httpResponse, body) {
+                    console.log( httpResponse );
+                    console.log( body );
+                });
 
 }
+
+// EXPORTS
+// ================================================================================================================
+
+exports.user_connect = user_connect ;
